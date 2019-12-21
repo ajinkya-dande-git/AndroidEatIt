@@ -72,24 +72,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) ;
-        /*
-        {
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-            }
 
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-            }
-
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-                super.onDrawerSlide(drawerView, slideOffset);
-            }
-        }
-         */
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -100,11 +83,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         // Set Name for user
         View headerView = navigationView.getHeaderView(0);
         txtFullName = (TextView) headerView.findViewById(R.id.txtFullName);
-        txtFullName.setText(""+Common.currentUser.getName());
+        txtFullName.setText(Common.currentUser.getName());
 
         // Load Menu - we are using Firebase UI to bind data from Firebase to RecycleView
         recycler_menu = (RecyclerView) findViewById(R.id.recycler_menu);
-        recycler_menu.hasFixedSize();
+        recycler_menu.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recycler_menu.setLayoutManager(layoutManager);
 
@@ -136,7 +119,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 viewHolder.setItemClickListner(new ItemClickListner() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(Home.this, ""+clickitem.getName(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Home.this, ""+ clickitem.getName(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
